@@ -1,21 +1,20 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from datetime import datetime, timedelta
-from importlib import import_module
-from multiprocessing.pool import ThreadPool
 import logging
 import os
 import sys
+from datetime import datetime, timedelta
+from multiprocessing.pool import ThreadPool
 
 from django.db.utils import OperationalError
 from django.utils import timezone
 from six import python_2_unicode_compatible
 
+from background_task import signals
 from background_task.exceptions import BackgroundTaskError
 from background_task.models import Task
 from background_task.settings import app_settings
-from background_task import signals
 
 logger = logging.getLogger(__name__)
 
@@ -306,8 +305,13 @@ def autodiscover():
     Autodiscover tasks.py files in much the same way as admin app
     """
     from django.conf import settings
+    from django.utils.module_loading import import_module
 
-    for app in settings.INSTALLED_APPS:
+    installed_apps = settings.INSTALLED_APPS.copy()
+    if 'report_builder' in installed_apps:
+        installed_apps.remove('report_builder')
+
+    for app in installed_apps:
         try:
             import_module("%s.tasks" % app)
         except ImportError:
