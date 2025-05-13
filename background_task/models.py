@@ -154,7 +154,16 @@ class Task(models.Model):
     EVERY_HALF_MINUTE = 30
     EVERY_FORTY_FIVE_SECONDS = 45
     EVERY_MINUTE = 60
+    EVERY_3_MINUTES = EVERY_MINUTE * 3
+    EVERY_5_MINUTES = EVERY_MINUTE * 5
+    EVERY_10_MINUTES = EVERY_MINUTE * 10
+    EVERY_20_MINUTES = EVERY_MINUTE * 20
+    EVERY_30_MINUTES = EVERY_MINUTE * 30
     HOURLY = 3600
+    EVERY_2_HOURS = HOURLY * 2
+    EVERY_4_HOURS = HOURLY * 4
+    EVERY_8_HOURS = HOURLY * 8
+    EVERY_12_HOURS = HOURLY * 12
     DAILY = 24 * HOURLY
     WEEKLY = 7 * DAILY
     EVERY_2_WEEKS = 2 * WEEKLY
@@ -167,16 +176,16 @@ class Task(models.Model):
         (EVERY_HALF_MINUTE, 'every 30 seconds'),
         (EVERY_FORTY_FIVE_SECONDS, 'every 45 seconds'),
         (EVERY_MINUTE, 'every 1 minute'),
-        (EVERY_MINUTE * 3, 'every 3 minutes'),
-        (EVERY_MINUTE * 5, 'every 5 minutes'),
-        (EVERY_MINUTE * 10, 'every 10 minutes'),
-        (EVERY_MINUTE * 20, 'every 20 minutes'),
-        (EVERY_MINUTE * 30, 'every 30 minutes'),
+        (EVERY_3_MINUTES, 'every 3 minutes'),
+        (EVERY_5_MINUTES, 'every 5 minutes'),
+        (EVERY_10_MINUTES, 'every 10 minutes'),
+        (EVERY_20_MINUTES, 'every 20 minutes'),
+        (EVERY_30_MINUTES, 'every 30 minutes'),
         (HOURLY, 'every hour'),
-        (HOURLY * 2, 'every 2 hours'),
-        (HOURLY * 4, 'every 4 hours'),
-        (HOURLY * 8, 'every 8 hours'),
-        (HOURLY * 12, 'every 12 hours'),
+        (EVERY_2_HOURS, 'every 2 hours'),
+        (EVERY_4_HOURS, 'every 4 hours'),
+        (EVERY_8_HOURS, 'every 8 hours'),
+        (EVERY_12_HOURS, 'every 12 hours'),
         (DAILY, 'every day'),
         (WEEKLY, 'every week'),
         (EVERY_2_WEEKS, 'every 2 weeks'),
