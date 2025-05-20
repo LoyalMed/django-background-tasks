@@ -33,6 +33,11 @@ class AppSettings(object):
         return self.MAX_RUN_TIME
 
     @property
+    def BACKGROUND_TASK_MAX_SLEEP_TIME(self):
+        """Maximum possible sleep time between of task attempts."""
+        return getattr(settings, 'BACKGROUND_TASK_MAX_SLEEP_TIME', 0)
+
+    @property
     def BACKGROUND_TASK_RUN_ASYNC(self):
         """Control if tasks will run asynchronous in a ThreadPool."""
         return getattr(settings, 'BACKGROUND_TASK_RUN_ASYNC', False)
